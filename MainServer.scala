@@ -1,3 +1,7 @@
+/*Main body of the program. Initialises all classes. It has an interactive user control panel, where you can choose to perform some operations. 
+You can change turbine directions, change sun panel angle or open/close dam floodgates. Whenever a floodgate is opened, system checks camera, so "humans" wouldn't
+be harmed. It performs a camera check every 10 minutes regardless, if the user interacts or not, as long as the program is still running. Files
+for running this program are provided.
 import java.util.concurrent.{Executors, TimeUnit}
 import scala.io.StdIn
 
@@ -6,9 +10,9 @@ object MainServer extends App {
   private val camera = new Camera("camera.txt")
   private val cameraServer = new CameraServer(camera)
   private val turbine = new WindTurbine("North", "turbine.txt")
-  private val sunPanel = new SunPanel("0 degrees", "sunpanel.txt")
+  private val sunPanel = new SunPanel("0°", "sunpanel.txt")
 
-  // ---- Scheduler (runs every 10 minutes) ----
+  // scheduler (runs every 10 minutes)
 
   private val scheduler = Executors.newScheduledThreadPool(1)
 
@@ -67,7 +71,7 @@ object MainServer extends App {
   // Run every 10 minutes (600 seconds)
   scheduler.scheduleAtFixedRate(task, 0, 10, TimeUnit.MINUTES)
 
-  // ---- User command loop ----
+  // user command loop
 
   println("Server started. Commands:")
   println("1 -> Check camera alerts now")
@@ -76,7 +80,7 @@ object MainServer extends App {
   println("4 -> Close floodgate")
   println("5 -> Turn the wind turbines")
   println("6 -> Adjust the sun panels")
-  println("q -> Quit")
+  println("0 -> Quit")
 
   private var running = true
 
@@ -120,16 +124,16 @@ object MainServer extends App {
         val idx = StdIn.readLine().toInt
         controlFloodgate(idx, open = false)
       case "5" =>
-        println("Enter turbine direction:")
+        println("Enter new turbine direction:")
         val dir = StdIn.readLine()
         turbine.setDirection(dir)
         println(s"Turbine direction set to $dir")
       case "6" =>
-        println("Enter turbine direction:")
+        println("Enter new sun panel angle:")
         val dir = StdIn.readLine()
         sunPanel.setDirection(dir)
-        println(s"Sun panel adjusted to $dir")
-      case "q" =>
+        println(s"Sun panel adjusted to $dir °")
+      case "0" =>
         println("Shutting down...")
         running = false
         scheduler.shutdown()
