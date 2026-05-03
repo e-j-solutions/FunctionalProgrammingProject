@@ -1,3 +1,4 @@
+//Collects data from Cameras and analyses it. If there is an intruder detected, returns an IntruderAlert, same for personnel (PersonnelAlert=> required for a floodgate openning)
 sealed trait Alert
 
 case object IntruderAlert extends Alert
