@@ -1,3 +1,4 @@
+//Class sun panel can read a file for energy values. It also has a direction variable to determine its position against the sun.
 import scala.io.Source
 import scala.util.{Try, Using}
 
