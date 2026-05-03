@@ -1,7 +1,7 @@
 /*Main body of the program. Initialises all classes. It has an interactive user control panel, where you can choose to perform some operations. 
 You can change turbine directions, change sun panel angle or open/close dam floodgates. Whenever a floodgate is opened, system checks camera, so "humans" wouldn't
 be harmed. It performs a camera check every 10 minutes regardless, if the user interacts or not, as long as the program is still running. Files
-for running this program are provided.
+for running this program are provided.*/
 import java.util.concurrent.{Executors, TimeUnit}
 import scala.io.StdIn
 
