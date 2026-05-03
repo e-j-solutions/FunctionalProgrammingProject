@@ -1,3 +1,4 @@
+//Collects data from all energy sources and performs analysis, then returns values
 object EnergyData {
 
   // converters string to double
