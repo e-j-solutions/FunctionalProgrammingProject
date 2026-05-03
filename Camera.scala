@@ -1,13 +1,10 @@
+//Camera class reads a file through a lazy iteraitor (to emulate data streaming) and passes it to CameraServer for analysis
 import scala.io.Source
 import scala.util.Try
 
 class Camera(path: String) {
 
-  /**
-   * Returns a lazy iterator over lines.
-   * The file is opened and safely closed after consumption.
-   */
-  def stream(): Either[String, Iterator[String]] =
+  def stream(): Either[String, Iterator[String]] = //This is a lazy iteraitor
     Try {
       val source = Source.fromFile(path)
 
