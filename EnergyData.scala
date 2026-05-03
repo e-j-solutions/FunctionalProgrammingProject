@@ -1,6 +1,6 @@
 object EnergyData {
 
-  // ---- Converters ----
+  // converters string to double
 
   private def damToDoubles(dam: Dam.type): Either[String, List[Double]] =
     Dam.readData("dam.txt").map { lines =>
@@ -16,7 +16,7 @@ object EnergyData {
       lines.flatMap(line => scala.util.Try(line.toDouble).toOption)
     }
 
-  // ---- Collect all data ----
+  // collect all data
 
   def collect(dam: Dam.type, turbine: WindTurbine, sunPanel: SunPanel): Either[String, List[Double]] =
     for {
@@ -25,7 +25,7 @@ object EnergyData {
       damData <- damToDoubles(Dam)
     } yield damData ++ turbineData ++ sunPanelData
 
-  // ---- Analysis functions ----
+  // analysis functions
 
   def mean(data: List[Double]): Double =
     if (data.isEmpty) 0.0 else data.sum / data.length
@@ -50,7 +50,7 @@ object EnergyData {
   def midrange(data: List[Double]): Double =
     if (data.isEmpty) 0.0 else (data.max + data.min) / 2
 
-  // ---- Run full analysis ----
+  // running full analysis
 
   case class Stats(
                     mean: Double,
